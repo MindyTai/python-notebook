@@ -15,7 +15,7 @@ print('Hi,please pick one of the orders:')
 
 
 def Add():
-    #if value == 'Add':
+
     file_name = input('Insert the file name:')
     f = open(file_name, 'w', encoding = 'UTF-8')
     file_content = input('Type your note:')
@@ -24,9 +24,7 @@ def Add():
     f.close()
     listName = open('listName.txt', 'a', encoding = 'UTF-8')
     listContent = listName.write(file_name+'\n')
-    #NewList = list()
-    #NewList = NewList.append(listContent)
-    #break
+
 def Read():
     list_name = input('Insert the file name:')
 
@@ -48,7 +46,7 @@ def List():
     print('List all the file name and cotents:')
 
     for namee in open('listName.txt', 'r', encoding='UTF-8'):
-        #for namee in file_name1:
+
         for word in open(namee.strip(), 'r', encoding='UTF-8'):
             print(namee)
             print('\n')
@@ -65,7 +63,7 @@ def Remove():
 
     f = open('listName.txt', 'r', encoding='UTF-8')
     lines = f.readlines()
-    #print(lines)
+
     f.close()
 
     f = open('listName.txt', 'w', encoding='UTF-8')
@@ -76,7 +74,6 @@ def Remove():
 
 
 
-        # listName裡的file還留著！
 
 while True:
 
