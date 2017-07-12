@@ -12,7 +12,7 @@ print('Remove: search the title and remove one note')
 print('\n')
 print('Hi,please pick one of the orders:')
 
-value = input('1.Add 2.List 3.Read 4.Remove  \n')
+
 
 def Add():
     #if value == 'Add':
@@ -23,22 +23,22 @@ def Add():
     f.write(file_content)
     f.close()
     listName = open('listName.txt', 'a', encoding = 'UTF-8')
-
     listContent = listName.write(file_name+'\n')
-    file_name1 = list()
-    file_name1 = file_name1.append(listContent)
+    #NewList = list()
+    #NewList = NewList.append(listContent)
     #break
-def  Read():
+def Read():
     list_name = input('Insert the file name:')
 
-    for name in file_name1 :
-        #print(name)
-        if name == list_name:
-            for word in open(list_name, 'r', encoding='UTF-8'):
-                print(list_name)
+    for name in open('listName.txt', 'r', encoding='UTF-8') :
+
+        if name.strip() == list_name:
+            for word in open(name.strip(), 'r', encoding='UTF-8'):
+                print(name)
                 print('\n')
                 print(word,end='')
-            break
+                break
+
 
         else:
             if name != list_name:
@@ -59,26 +59,44 @@ def Remove():
     remove_value = input('Remove the file:')
 
     for namee in open('listName.txt', 'r', encoding='UTF-8'):
-
         if namee.strip() == remove_value:
             os.remove(namee.strip())
+            open('listName.txt', 'r', encoding='UTF-8').close()
+
+    f = open('listName.txt', 'r', encoding='UTF-8')
+    lines = f.readlines()
+    #print(lines)
+    f.close()
+
+    f = open('listName.txt', 'w', encoding='UTF-8')
+    for line in lines:
+        if line!=remove_value + "\n":
+            f.write(line)
+    f.close()
+
+
+
+        # listName裡的file還留著！
 
 while True:
+
+    value = input('1.Add 2.List 3.Read 4.Remove  \n')
     if value == 'Add':
         Add()
-        break
+        continue
 
     elif value == 'Read':
         Read()
-        break
+        continue
 
     elif value == 'List':
         List()
-        break
+        continue
 
     elif value == 'Remove':
         Remove()
-        break
+        continue
 
     else:
         print("Invalid input")
+        continue
